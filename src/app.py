@@ -40,4 +40,3 @@ pickle.dump(model4, open(filename,'wb'))
 #load model
 
 loaded_model = pickle.load(open(filename,'rb'))
-
