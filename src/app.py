@@ -23,14 +23,21 @@ x_train, x_test, y_train, y_test = model_selection.train_test_split(x,y, test_si
 model = LinearRegression() 
 model.fit(x_train, y_train)
 
+poly_features = PolynomialFeatures(degree = 2) 
+
+#Transform features
+
+x_poly_train = poly_features.fit_transform(x_train) 
+x_poly_test = poly_features.fit_transform(x_test)
+
+model4 = model.fit(x_poly_train, y_train)
+
 filename = 'models/model.sav'
 
-pickle.dump(model, open(filename,'wb'))
+pickle.dump(model4, open(filename,'wb'))
+
 
 #load model
 
 loaded_model = pickle.load(open(filename,'rb'))
 
-result = loaded_model.score(x_test, y_test)
-
-print(result)
